@@ -9,20 +9,25 @@ class Line {
   float c;
   float d;
   
+  float r;
+  float g;
+  float bl;
   
-  Line(float x, float y, float x1, float y1){
+  Line(float x, float y, float x1, float y1, float red, float gre, float blu){
     t = 0;
     a = x;
     b = y;
     c = x1;
     d = y1;
+    r = red;
+    g = gre;
+    bl = blu;
    // line(0, 1, 2, 3);
   }
   
   void display(){
-    stroke(40, 70, 255);
+    stroke(r, g, bl);
     strokeWeight(5);
-    translate(width/2, height/2);
     line(a, b, c, d);
   }
 

@@ -1,21 +1,19 @@
 
 
-Line l;
+LineSystem ls;
 
 void setup() {
    background(5);
    size(500,500);
    surface.setResizable(true);
    fullScreen();
-//   l = new Line(5, 10, 15, 20);
+   ls = new LineSystem();
+   
 }
 
 void draw() {
      background(5);
+     translate(width/2, height/2);
 
-  l.display();
-  //Line.run();
-//  background(5);
- // l = new Line();
-  //Line.display();
+     ls.run();
 }
