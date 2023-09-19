@@ -1,9 +1,8 @@
-// a simple Line class
+// a class to generate a single Line, or frame, of the work
 
 
 class Line {
   float t;
-  //static final int NUM_LINES = 10;
   float a;
   float b;
   float c;
