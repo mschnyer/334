@@ -6,6 +6,9 @@ this program uses parametric equations combined with random
 variables generated based on window size. The colors of each Line
 System are also random.
 
+Link to video demo: https://www.youtube.com/watch?v=R7jA-Pd9UJ0
+
+
 In order to plug this system into a Raspberry Pi and to
 run at boot, 
 
@@ -18,5 +21,3 @@ run at boot,
      sudo reboot
 
 The generative art should run on reboot!
-
-Link to video demo: https://www.youtube.com/watch?v=R7jA-Pd9UJ0
