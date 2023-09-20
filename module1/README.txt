@@ -18,3 +18,5 @@ run at boot,
      sudo reboot
 
 The generative art should run on reboot!
+
+Link to video demo: https://www.youtube.com/watch?v=R7jA-Pd9UJ0
