@@ -30,7 +30,7 @@ udp_socket.bind((ip_address, port))
 print(f"Listening for UDP packets on {ip_address}:{port}")
 
 
-client = udp_client.SimpleUDPClient("172.27.160.56", 57120) 
+client = udp_client.SimpleUDPClient("172.27.160.56" , 57120) 
 
 # for x in range(10) :
 #     number = random.random()
