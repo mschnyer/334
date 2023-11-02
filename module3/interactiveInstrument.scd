@@ -97,7 +97,7 @@ SynthDef(\saw, { |cutoff=1000, greenMix=0.5, pos=1|
 	var sig;
 	sig = Saw.ar(60);
 	sig = RLPF.ar(sig, cutoff.lag(0.02), 0.25, 0.2);
-//	sig = FreeVerb.ar(sig, greenMix, damp: 0.5);
+	sig = FreeVerb.ar(sig, greenMix, damp: 0.5);
 	//sig = Pan2.ar(sig, pan);
 	//sig = Pan2.ar(sig, pos: pan);
 	//Out.ar(0, Pan2.ar(sig, pos: pan));
