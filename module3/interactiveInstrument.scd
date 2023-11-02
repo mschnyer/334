@@ -3,7 +3,7 @@
 //s.boot;
 
 
-Server.killAll;
+//Server.killAll;
 
 (
 s.waitForBoot(
@@ -92,18 +92,6 @@ f = { |msg, time, addr|
 
 // *************** THE FUN STUFF *****************
 
-    // Piano SynthDef
-/*	SynthDef(\pianoChords, { |out=0, freq=440, gate=1, amp = 0.8, vel = 100|
-		var son;
-
-		son = MdaPiano.ar(freq, gate, vel: vel, release: 0.0, stereo: 0.3, sustain: 0.8);
-		son = FreeVerb.ar(son, mix: 0.5, damp: 0.01);
-		son = LPF.ar(son);
-
-		DetectSilence.ar(son, 0.0001, doneAction:2);
-
-		Out.ar(out, son * amp);
-	}).add;*/
 
 SynthDef(\saw, { |cutoff=1000, greenMix=0.5, pos=1|
 	var sig;
@@ -118,15 +106,6 @@ SynthDef(\saw, { |cutoff=1000, greenMix=0.5, pos=1|
 	Out.ar(0, sig);
 
 }).add;
-
-/*SynthDef(\sine, { |out=0,freq=200, amp=0.5, pan=0|
-	var sin;
-	sin = SinOsc.ar(freq);
-	//sin = RLPF.ar(sig, cutoff.lag(0.02), 0.25, 0.2);
-	sin = sin * amp;
-
-	Out.ar(out, Pan2.ar(sin, pos: -1));
-}).add;*/
 
 	SynthDef(\pianoChords, { |out=0, freq=440, gate=1, amp = 0.8, vel = 100|
 		var son;
@@ -153,33 +132,6 @@ SynthDef(\saw, { |cutoff=1000, greenMix=0.5, pos=1|
 thisProcess.removeOSCRecvFunc(f);
 
 //s.sync;
-
-
-
-
-//test parameter setting
-~z.set(\freq, 233);
-~z.set(\amp, 0.1);
-~z.free;
-
-
-(
-~create = Routine.new({
-	{
-		"test".postln;
-		if(~touchVal != 0 && ~touchVal != nil, {~notes = ~notes.add(~touchVal * 2).postln});
-		~dur = [1];
-		~arpOut = Pbind(\instrument, \pianoChords, \midinote, Pseq(~notes, inf), \dur, Pseq(~dur, inf), \amp, 0.6); // # measures x 4
-		~arpOut.play;
-		5.wait;
-
-	}.loop;
-
-}).play;
-
-)
-
-~create.stop;
 
 
 ~synth = Synth(\saw, [\cutoff, 200, \dur, 0.2, \pos, 0]);
@@ -211,38 +163,5 @@ thisProcess.removeOSCRecvFunc(f);
 ~controlSynth.stop;
 
 
-(
-~controlAmp = Routine.new({
-	{
-		if(~isTouched == false, {~z.set(\amp,0.3)}, {
-			if(~isTouched == true && ~redVal > 4 && ~redVal != nil, {~z.set(\amp, (4/~redVal))});
-		});
-		0.005.wait;
-	}.loop
-}).play
-)
-~controlCutOff.stop;
-
-
-
-
 o.free;
-
-
-
-SynthDef(\saw, { |cutoff=1000, greenMix=0.5, pos=1|
-	var sig;
-	sig = Saw.ar([59,60]);
-	sig = RLPF.ar(sig, cutoff.lag(0.02), 0.25, 0.2);
-//	sig = FreeVerb.ar(sig, greenMix, damp: 0.5);
-	//sig = Pan2.ar(sig, pan);
-	//sig = Pan2.ar(sig, pos: pan);
-	//Out.ar(0, Pan2.ar(sig, pos: pan));
-	//pos = LinPan2.ar(sig, Line.kr(-1, 1, dur));
-	sig = Pan2.ar(sig, pos);
-	Out.ar(0, sig);
-
-}).add;
-
-~synth = Synth(\saw, [\cutoff, 200, \dur, 0.2, \pos, -1]);
 
